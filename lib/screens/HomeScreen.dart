@@ -29,16 +29,7 @@ class Homescreen extends StatelessWidget {
       },
     ];
 
-     final List<Map<String, dynamic>> projects = [
-      {
-        'name': 'Saas-Omnichannel',
-        'images': [
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_chathubwapers.png',
-          'assets/images/ic_logo_heroesacademy.jpg'
-        ],
-        'company':'August 2021 - Present',
-      },
+     final List<Map<String, dynamic>> mobileAppProjects = [
        {
         'name': 'Chathub-Wapers',
          'images': [
@@ -48,24 +39,46 @@ class Homescreen extends StatelessWidget {
         ],
         'company':'August 2021 - Present',
       },
-       {
-        'name': 'Ruangguru Rewrite',
-        'images': [
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png'
+        {
+        'name': 'Ruangguru - Heroes Academy',
+         'images': [
+          'assets/images/ic_mobileapp_heroesacademy_1.jpg',
+          'assets/images/ic_mobileapp_heroesacademy_2.jpg',
+          'assets/images/ic_mobileapp_heroesacademy_3.jpg'
         ],
         'company':'August 2021 - Present',
       },
       {
-        'name': 'Ruangguru Learning Engagement',
+        'name': 'Ruangguru - Learning Engagement',
       'images': [
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png'
+          'assets/images/ic_mobileapp_leeg_1.png',
+          'assets/images/ic_mobileapp_leeg_2.png',
+          'assets/images/ic_mobileapp_leeg_3.png'
         ],
         'company':'August 2021 - Present',
       }
+    ];
+
+
+     final List<Map<String, dynamic>> webAppProjects = [
+      {
+        'name': 'Saas-Omnichannel',
+        'images': [
+          'assets/images/ic_webapp_saasomni_1.png',
+          'assets/images/ic_webapp_saasomni_2.png',
+          'assets/images/ic_webapp_saasomni_3.png'
+        ],
+        'company':'August 2021 - Present',
+      },
+       {
+        'name': 'Ruangguru Rewrite',
+        'images': [
+          'assets/images/ic_webapp_payment_1.png',
+          'assets/images/ic_webapp_payment_2.png',
+          'assets/images/ic_webapp_payment_3.png'
+        ],
+        'company':'August 2021 - Present',
+      },
     ];
 
     return Scaffold(
@@ -131,29 +144,124 @@ class Homescreen extends StatelessWidget {
                 "Powerfull Projects",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
+               Text(
+                "Mobile App",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
+                  crossAxisCount: 3,
                   childAspectRatio: 1,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  mainAxisSpacing: 5,
                 ),
-                itemCount: projects.length,
+                itemCount: mobileAppProjects.length,
                 itemBuilder: (context, index) {
                   return Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (projects[index]['name']!,
+                        (mobileAppProjects[index]['name']!,
                     
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
-                        ImageCarouselSlider(items: projects[index]['images']!),
-                        Text(projects[index]['company']!)
+                       
+              SizedBox(height: 20),
+            Center(
+              child: Container(
+                width: 250,
+                height: 500,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: Colors.white, width: 8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(22),
+                  child: Container(
+                    color: Colors.grey[900], // Simulating screen content
+                    child: Center(
+                      child:             // Background Image
+            Positioned.fill(
+              child:  ImageCarouselSlider(items: mobileAppProjects[index]['images']!,imageHeight: 470,),
+            ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+                        Text(mobileAppProjects[index]['company']!)
+                      ],
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: 150),
+               Text(
+                "Web App",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                ),
+                itemCount: webAppProjects.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text
+                        (webAppProjects[index]['name']!,
+                    
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+
+              SizedBox(height: 40),
+            Center(
+              child: Container(
+                width: 500,
+                height: 300,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(color: Colors.white, width: 5),
+                  // borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child:  Positioned.fill(
+              child: ImageCarouselSlider(items: webAppProjects[index]['images']!,imageHeight: 280),
+            ),
+                ),
+              ),
+            ),
+                       
+              SizedBox(height: 20),
+                        Text(webAppProjects[index]['company']!)
                       ],
                     ),
                   );
