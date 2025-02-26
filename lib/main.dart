@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
         length: 3, 
         child: Scaffold(
           appBar: AppBar.new(
-            title: Text("Welcome Awsome One!"),
+            title: Text("Welcome Awsome One!", style: TextStyle(fontWeight: FontWeight.bold),),
             bottom: TabBar(tabs: [Tab(text: "Homepage",),Tab(text: "Profile",),Tab(text: "Projects",)]),
           ),
           body: TabBarView(children: [Homescreen(),ProfileScreen(),ProjectsScreen()]),

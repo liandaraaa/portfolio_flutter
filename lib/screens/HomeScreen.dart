@@ -33,11 +33,11 @@ class Homescreen extends StatelessWidget {
        {
         'name': 'Chathub-Wapers',
          'images': [
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png',
-          'assets/images/ic_logo_saas.png'
+          'assets/images/ic_mobileapp_wapers_1.jpg',
+          'assets/images/ic_mobileapp_wapers_2.jpg',
+          'assets/images/ic_mobileapp_wapers_3.jpg'
         ],
-        'company':'August 2021 - Present',
+        'company':'Ruangguru',
       },
         {
         'name': 'Ruangguru - Heroes Academy',
@@ -46,7 +46,7 @@ class Homescreen extends StatelessWidget {
           'assets/images/ic_mobileapp_heroesacademy_2.jpg',
           'assets/images/ic_mobileapp_heroesacademy_3.jpg'
         ],
-        'company':'August 2021 - Present',
+        'company':'Ruangguru',
       },
       {
         'name': 'Ruangguru - Learning Engagement',
@@ -55,7 +55,7 @@ class Homescreen extends StatelessWidget {
           'assets/images/ic_mobileapp_leeg_2.png',
           'assets/images/ic_mobileapp_leeg_3.png'
         ],
-        'company':'August 2021 - Present',
+        'company':'Ruangguru',
       }
     ];
 
@@ -64,20 +64,20 @@ class Homescreen extends StatelessWidget {
       {
         'name': 'Saas-Omnichannel',
         'images': [
-          'assets/images/ic_webapp_saasomni_1.png',
-          'assets/images/ic_webapp_saasomni_2.png',
-          'assets/images/ic_webapp_saasomni_3.png'
+          'assets/images/ic_webapp_saas_1.png',
+          'assets/images/ic_webapp_saas_2.png',
+          'assets/images/ic_webapp_saas_3.png'
         ],
-        'company':'August 2021 - Present',
+        'company':'Ruangguru',
       },
        {
-        'name': 'Ruangguru Rewrite',
+        'name': 'Ruangguru Payment',
         'images': [
           'assets/images/ic_webapp_payment_1.png',
           'assets/images/ic_webapp_payment_2.png',
           'assets/images/ic_webapp_payment_3.png'
         ],
-        'company':'August 2021 - Present',
+        'company':'Ruangguru',
       },
     ];
 
@@ -145,18 +145,21 @@ class Homescreen extends StatelessWidget {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-               Text(
-                "Mobile App",
+               Center(
+              child:   Text(
+                "Mobile Applications",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
+            ),
+              SizedBox(height: 20),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: 1,
-                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.8,
+                  crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
                 ),
                 itemCount: mobileAppProjects.length,
@@ -202,24 +205,27 @@ class Homescreen extends StatelessWidget {
                 ),
               ),
             ),
+              SizedBox(height: 20),
                         Text(mobileAppProjects[index]['company']!)
                       ],
                     ),
                   );
                 },
               ),
-              SizedBox(height: 150),
-               Text(
-                "Web App",
+              SizedBox(height: 80),
+            Center(
+              child:   Text(
+                "Web Applications",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
+            ),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1,
+                  childAspectRatio: 1.5,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
                 ),
@@ -235,7 +241,7 @@ class Homescreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
 
-              SizedBox(height: 40),
+              SizedBox(height: 20),
             Center(
               child: Container(
                 width: 500,
