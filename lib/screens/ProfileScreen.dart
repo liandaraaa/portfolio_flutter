@@ -1,21 +1,74 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/education.dart';
+import 'package:flutter_portfolio/data/work.dart';
 import 'package:flutter_portfolio/sections/EducationSection.dart';
+import 'package:flutter_portfolio/sections/work_section.dart';
 import 'package:flutter_portfolio/widget/StepperView.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileScreen extends StatelessWidget {
 
+ final List<Work> works = [
+     Work(
+        position: "Software Engineer (Web and Mobile Frontend)",
+        company: "PT Ruang Raya Indonesia (Ruangguru)",
+        year: "August 2021 - present",
+        details: [
+          "Led the development of user-friendly web applications and collaborated with design teams to ensure a seamless user interface.",
+          "Implemented responsive design principles to ensure compatibility across various devices and screen sizes.",
+          "Conducted regular testing and debugging to ensure application stability and performance.",
+          "Collaborated with cross-functional teams to deliver high-quality software solutions and meet project deadlines.",
+          "Participated in agile development processes, contributing to sprint planning and retrospectives.",
+          "Engaged in continuous learning and skill development to keep up with industry trends and technologies."
+        ]
+     ),
+      Work(
+        position: "Android Engineer",
+        company: "PT Indopasifik Teknologi Medika Indonesia (itmi.id)",
+        year: "March 2021 - August 2021",
+        details: [
+          "Contributed to the development of innovative mobile applications, enhancing user experience and functionality.",
+          "Assisted in the integration of third-party libraries and APIs to enhance application functionality." ,
+          "Participated in the full software development lifecycle, from requirements gathering to deployment and maintenance." ,
+                     "Worked closely with the product team to define application requirements and specifications." ,
+                     "Collaborated with the QA team to ensure high-quality standards and timely delivery of the application." ,
+                              "Participated in code reviews and contributed to improving team coding standards." 
+        ]
+     ),
+      Work(
+        position: "Android Engineer",
+        company: "PT Jejaring Hijau Indonesia (kecipir.id)",
+        year: "July 2020 - March 2021",
+        details: [
+          "Contributed to the development of a sustainable agriculture mobile application, promoting eco-friendly practices and user engagement.",
+            "Developed features for the application, including user authentication and data visualization components." ,
+                       "Implemented push notifications to keep users informed about updates and events." ,
+        ]
+     ),
+      Work(
+        position: "Android Engineer",
+        company: "PT Kode Aplikasi Indonesia (Nusantara Beta Studio - NBS)",
+        year: "July 2018 - July 2020",
+        details:[
+          "Developed and maintained various features for Android applications, ensuring optimal performance and user satisfaction.", 
+          "Collaborated with cross-functional teams to define, design, and ship new features.", 
+          "Troubleshot and resolved issues reported by users, improving overall application reliability."
+        ]
+     ),
+    ];
+
+
  final List<Education> educations = [
      Education(
-       degree: "Bachelor of Science",
+        degree: "Bachelor of Science",
         university: "ABC University",
         year: "2018 - 2022",
-        location: "Jakarta",
         details: "GPA: 3.8/4.0, Dean's List, Research in AI"
      ),
     ];
+
+  ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               Container(
+               SizedBox(
                 height: 250,
                 width: 250,
                 child:  CircleAvatar(
@@ -104,23 +157,21 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
              SizedBox(height: 40),
-             Divider(height: 20,thickness: 50,),
-             SizedBox(height: 20),
-            Center(
-              child: Text("Education and Organization Experience", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+            Container(
+              decoration: BoxDecoration(color: Colors.blueAccent),
+              padding: EdgeInsets.all(12),
+              child: Center(
+              child: Text("Work Experience", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),),
             ),
-            StepperView(
-              steps: [
-              Step(title: Text("Bachelor of Computer Science"), content: EducationSection(educations: educations)),
-              Step(title: Text("Head of Human Resource Department"), content: EducationSection(educations: educations)),
-              Step(title: Text("Vice Chairman"), content: EducationSection(educations: educations))
-            ],
             ),
+            WorkSection(works: works),
              SizedBox(height: 20),
-             Divider(height: 20,thickness: 50,),
-             SizedBox(height: 20),
-            Center(
-              child: Text("Work Experience", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+              Container(
+              decoration: BoxDecoration(color: Colors.blueAccent),
+              padding: EdgeInsets.all(12),
+              child: Center(
+              child: Text("Education and Organization Experience", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),),
+            ),
             ),
              StepperView(
               steps: [
