@@ -17,6 +17,12 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   Work? selectedCompany;
 
   @override
+  void initState() {
+    super.initState();
+    selectedCompany = getDummyWorks[0];
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
