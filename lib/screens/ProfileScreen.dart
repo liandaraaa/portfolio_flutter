@@ -2,9 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/education.dart';
 import 'package:flutter_portfolio/data/work.dart';
-import 'package:flutter_portfolio/sections/EducationSection.dart';
+import 'package:flutter_portfolio/sections/education_section.dart';
 import 'package:flutter_portfolio/sections/work_section.dart';
-import 'package:flutter_portfolio/widget/StepperView.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -61,11 +60,23 @@ class ProfileScreen extends StatelessWidget {
 
  final List<Education> educations = [
      Education(
-        degree: "Bachelor of Science",
-        university: "ABC University",
-        year: "2018 - 2022",
-        details: "GPA: 3.8/4.0, Dean's List, Research in AI"
+        position: "Bachelor of Computer Science",
+        university: "Universitas Pembangunan Nasional Veteran Jakarta",
+        year: "2015 - 2019",
+        details: "GPA: 3.88/4.00. Valedictorian and Best Graduate at UPN Veteran Jakarta 63rd Graduation"
      ),
+     Education(
+        position: "Vice Chairman",
+        university: "KSM Android - UPN Veteran Jakarta",
+        year: "2017 - 2018",
+        details: "Winner Of Mobile Application Competition at Techomfest 2018 by Politeknik Negeri Semarang"
+     ),
+     Education(
+        position: "Head of Human Resource Department",
+        university: "BEM Fakultas Ilmu Komputer - UPN Veteran Jakarta",
+        year: "2016 - 2017",
+        details: "Intiate new activities for new students to enhance student engagement and facilitate their integration into campus life."
+     )
     ];
 
   ProfileScreen({super.key});
@@ -173,30 +184,10 @@ class ProfileScreen extends StatelessWidget {
               child: Text("Education and Organization Experience", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),),
             ),
             ),
-             StepperView(
-              steps: [
-              Step(title: Text("PT Ruang Raya Indonesia (Ruangguru)"), content: EducationSection(educations: educations)),
-              Step(title: Text("PT Indopasifik Teknologi Medika Indonesia (Itmi.id)"), content: EducationSection(educations: educations)),
-              Step(title: Text("PT Jejaring Hijau Indonesia (Kecipir)"), content: EducationSection(educations: educations)),
-              Step(title: Text("PT Kode Aplikasi Indonesia (Nusantara Beta Studio - NBS)"), content: EducationSection(educations: educations))
-            ],
-            )
+            EducationSection(educations: educations)
           ],
         ),
         )
-      ),
-    );
-  }
-
-  Widget _buildSection(String title, Widget child) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: TextStyle(fontSize: 18),),
-          child
-        ],
       ),
     );
   }
