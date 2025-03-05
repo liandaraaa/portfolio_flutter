@@ -7,22 +7,51 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MainApp extends StatefulWidget {
+  const MainApp({Key? key}) : super(key: key);
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+class _MainAppState extends State<MainApp>  with SingleTickerProviderStateMixin{
+
+  late TabController _tabController;
+  bool transitioning = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+        length: 3, vsync: this, animationDuration: Duration(seconds: 2))
+      ..addListener(_handleTabIndexChanged);
+  }
+
+  void _handleTabIndexChanged() {
+    setState(() {
+      transitioning = _tabController.indexIsChanging;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
+      home: 
+      DefaultTabController(
         length: 3, 
-        child: Scaffold(
+        child: 
+        Scaffold(
           appBar: AppBar(
             title: Text("Welcome Awsome One!", style: TextStyle(fontWeight: FontWeight.bold),),
-            bottom: TabBar(tabs: [Tab(text: "Homepage",),Tab(text: "Profile",),Tab(text: "Projects",)]),
+            bottom: TabBar(
+              controller: _tabController,
+              tabs: [Tab(text: "Home",),Tab(text: "Profile",),Tab(text: "Projects",)]),
           ),
-          body: TabBarView(children: [Homescreen(),ProfileScreen(),ProjectsScreen()]),
+          body: TabBarView(
+            controller: _tabController,
+            children: [Homescreen(tabController: _tabController,),ProfileScreen(),ProjectsScreen()]),
         )
       )
     );
   }
+
+
 }

@@ -6,7 +6,9 @@ import 'package:flutter_portfolio/widget/mobile_app_view.dart';
 import 'package:flutter_portfolio/widget/web_app_view.dart';
 
 class Homescreen extends StatelessWidget {
-  const Homescreen({super.key});
+  TabController tabController;
+
+  Homescreen({super.key, required this.tabController});
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +116,7 @@ class Homescreen extends StatelessWidget {
 
   Widget buildWorkCompanyItem(context, workYear, companyLogo, companyName){
     return GestureDetector(
-      onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen())),
+      onTap: ()=> tabController.animateTo(1),
       child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +142,9 @@ class Homescreen extends StatelessWidget {
   }
 
   Widget buildMobileAppProject(List<Project> mobileAppProjects, int index, String companyName){
-    return Container(
+    return GestureDetector(
+      onTap: ()=> tabController.animateTo(2),
+      child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -152,11 +156,14 @@ class Homescreen extends StatelessWidget {
                                 Text(companyName)
                               ],
                             ),
-                          );
+                          ),
+    );
   }
 
   Widget buildWebAppProject(List<Project> webAppProjects, int index, String companyName){
-    return Container(
+      return GestureDetector(
+      onTap: ()=> tabController.animateTo(2),
+      child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -172,6 +179,7 @@ class Homescreen extends StatelessWidget {
                         Text(companyName)
                       ],
                     ),
-                  );
+                  ),
+    );
   }
 }
