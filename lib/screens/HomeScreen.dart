@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/dummies.dart';
+import 'package:flutter_portfolio/data/project.dart';
+import 'package:flutter_portfolio/screens/ProfileScreen.dart';
 import 'package:flutter_portfolio/widget/mobile_app_view.dart';
 import 'package:flutter_portfolio/widget/web_app_view.dart';
 
@@ -33,7 +35,7 @@ class Homescreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                "Work Eperiences",
+                "Work Companies",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               GridView.builder(
@@ -46,29 +48,9 @@ class Homescreen extends StatelessWidget {
                   mainAxisSpacing: 10,
                 ),
                 itemCount: getDummyWorks.length,
-               itemBuilder: (context, index) {
+                itemBuilder: (context, index) {
                   var company = getDummyCompanies.firstWhere((company)=> company.id == getDummyWorks[index].id);
-                  return Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text
-                        (getDummyWorks[index].year,
-                    
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(80.0),
-                          child: Image.asset(
-                            company.logoUrl, // Replace with your local image path
-                            height: 240,
-                            width: 240,
-                          ),
-                        ),
-                        Text(company.name)
-                      ],
-                    ),
-                  );
+                  return buildWorkCompanyItem(context, getDummyWorks[index].year, company.logoUrl, company.name);
                 },
               ),
               SizedBox(height: 20),
@@ -97,23 +79,7 @@ class Homescreen extends StatelessWidget {
                 itemCount: mobileAppProjects.length,
                 itemBuilder: (context, index) {
                   var company = getDummyCompanies.firstWhere((company)=>company.id == mobileAppProjects[index].companyId);
-                  return Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text
-                        (mobileAppProjects[index].name,
-                    
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                       
-              SizedBox(height: 20),
-              MobileAppView(project: getDummyProjects.firstWhere((project) => project.type == 'mobileapp')),
-              SizedBox(height: 20),
-                        Text(company.name)
-                      ],
-                    ),
-                  );
+                  return buildMobileAppProject(mobileAppProjects, index, company.name);
                 },
               ),
               SizedBox(height: 80),
@@ -136,7 +102,61 @@ class Homescreen extends StatelessWidget {
                 itemCount: webAppProjects.length,
                 itemBuilder: (context, index) {
                   var company = getDummyCompanies.firstWhere((company)=>company.id == webAppProjects[index].companyId);
-                  return Container(
+                  return buildWebAppProject(webAppProjects, index, company.name);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildWorkCompanyItem(context, workYear, companyLogo, companyName){
+    return GestureDetector(
+      onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen())),
+      child: Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text
+                        (workYear,
+                    
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(80.0),
+                          child: Image.asset(
+                            companyLogo, // Replace with your local image path
+                            height: 240,
+                            width: 240,
+                          ),
+                        ),
+                        Text(companyName, textAlign: TextAlign.center,)
+                      ],
+                    ),
+                  ),
+    );
+  }
+
+  Widget buildMobileAppProject(List<Project> mobileAppProjects, int index, String companyName){
+    return Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text
+                        (mobileAppProjects[index].name, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold), ),
+                      SizedBox(height: 20),
+                      MobileAppView(project: getDummyProjects.firstWhere((project) => project.type == 'mobileapp')),
+                      SizedBox(height: 20),
+                                Text(companyName)
+                              ],
+                            ),
+                          );
+  }
+
+  Widget buildWebAppProject(List<Project> webAppProjects, int index, String companyName){
+    return Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -149,16 +169,9 @@ class Homescreen extends StatelessWidget {
               SizedBox(height: 20),
               WebAppView(project: getDummyProjects.firstWhere((project) => project.type == 'webapp'),),
               SizedBox(height: 20),
-                        Text(company.name)
+                        Text(companyName)
                       ],
                     ),
                   );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
