@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portfolio/data/dummies.dart';
 import 'package:flutter_portfolio/data/work.dart';
 import 'package:flutter_portfolio/widget/StepperView.dart';
 
@@ -15,9 +16,10 @@ class WorkSection extends StatelessWidget {
    }
 
    Widget buildTitleView(Work work){
+    var company = getDummyCompanies.firstWhere((company) => company.id == work.companyId);
     return Column(
       children: [
-        Text(work.company, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+        Text(company.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
         SizedBox(height: 2),
         Text(work.position, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8)),
       ],

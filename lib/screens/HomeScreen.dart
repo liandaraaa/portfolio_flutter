@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image_carousel_slider/image_carousel_slider.dart';
+import 'package:flutter_portfolio/data/dummies.dart';
+import 'package:flutter_portfolio/widget/mobile_app_view.dart';
+import 'package:flutter_portfolio/widget/web_app_view.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -7,79 +9,8 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final List<Map<String, String>> companies = [
-      {
-        'year':'August 2021 - Present',
-        'name': 'Ruangguru',
-        'image': 'assets/images/ic_logo_ruangguru.png',
-      },
-      {
-        'year':'March 2021 - August 2021',
-        'name': 'Indopasifik Teknologi Medika Indonesia',
-        'image': 'assets/images/ic_logo_itmi.png',
-      },
-      {
-        'year':'July 2020 - March 2021',
-        'name': 'Kecipir.id',
-        'image': 'assets/images/ic_logo_kecipir.png',
-      },  {
-        'year':'July 2018 - July 2019',
-        'name': 'Nusantara Beta Studio',
-        'image': 'assets/images/ic_logo_nbs.jpeg',
-      },
-    ];
-
-     final List<Map<String, dynamic>> mobileAppProjects = [
-       {
-        'name': 'Chathub-Wapers',
-         'images': [
-          'assets/images/ic_mobileapp_wapers_1.jpg',
-          'assets/images/ic_mobileapp_wapers_2.jpg',
-          'assets/images/ic_mobileapp_wapers_3.jpg'
-        ],
-        'company':'Ruangguru',
-      },
-        {
-        'name': 'Ruangguru - Heroes Academy',
-         'images': [
-          'assets/images/ic_mobileapp_heroesacademy_1.jpg',
-          'assets/images/ic_mobileapp_heroesacademy_2.jpg',
-          'assets/images/ic_mobileapp_heroesacademy_3.jpg'
-        ],
-        'company':'Ruangguru',
-      },
-      {
-        'name': 'Ruangguru - Learning Engagement',
-      'images': [
-          'assets/images/ic_mobileapp_leeg_1.png',
-          'assets/images/ic_mobileapp_leeg_2.png',
-          'assets/images/ic_mobileapp_leeg_3.png'
-        ],
-        'company':'Ruangguru',
-      }
-    ];
-
-
-     final List<Map<String, dynamic>> webAppProjects = [
-      {
-        'name': 'Saas-Omnichannel',
-        'images': [
-          'assets/images/ic_webapp_saas_1.png',
-          'assets/images/ic_webapp_saas_2.png',
-          'assets/images/ic_webapp_saas_3.png'
-        ],
-        'company':'Ruangguru',
-      },
-       {
-        'name': 'Ruangguru Payment',
-        'images': [
-          'assets/images/ic_webapp_payment_1.png',
-          'assets/images/ic_webapp_payment_2.png',
-          'assets/images/ic_webapp_payment_3.png'
-        ],
-        'company':'Ruangguru',
-      },
-    ];
+    var mobileAppProjects = getDummyProjects.where((project)=>project.type == 'mobileapp').toList();
+    var webAppProjects = getDummyProjects.where((project)=>project.type == 'webapp').toList();
 
     return Scaffold(
       body: Padding(
@@ -114,26 +45,27 @@ class Homescreen extends StatelessWidget {
                   crossAxisSpacing: 4,
                   mainAxisSpacing: 10,
                 ),
-                itemCount: companies.length,
+                itemCount: getDummyWorks.length,
                itemBuilder: (context, index) {
+                  var company = getDummyCompanies.firstWhere((company)=> company.id == getDummyWorks[index].id);
                   return Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (companies[index]['year']!,
+                        (getDummyWorks[index].year,
                     
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80.0),
                           child: Image.asset(
-                            companies[index]['image']!, // Replace with your local image path
+                            company.logoUrl, // Replace with your local image path
                             height: 240,
                             width: 240,
                           ),
                         ),
-                        Text(companies[index]['name']!)
+                        Text(company.name)
                       ],
                     ),
                   );
@@ -164,49 +96,21 @@ class Homescreen extends StatelessWidget {
                 ),
                 itemCount: mobileAppProjects.length,
                 itemBuilder: (context, index) {
+                  var company = getDummyCompanies.firstWhere((company)=>company.id == mobileAppProjects[index].companyId);
                   return Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (mobileAppProjects[index]['name']!,
+                        (mobileAppProjects[index].name,
                     
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
                        
               SizedBox(height: 20),
-            Center(
-              child: Container(
-                width: 250,
-                height: 500,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.white, width: 8),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(22),
-                  child: Container(
-                    color: Colors.grey[900], // Simulating screen content
-                    child: Center(
-                      child:             // Background Image
-            Positioned.fill(
-              child:  ImageCarouselSlider(items: mobileAppProjects[index]['images']!,imageHeight: 470,),
-            ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+              MobileAppView(project: getDummyProjects.firstWhere((project) => project.type == 'mobileapp')),
               SizedBox(height: 20),
-                        Text(mobileAppProjects[index]['company']!)
+                        Text(company.name)
                       ],
                     ),
                   );
@@ -231,43 +135,21 @@ class Homescreen extends StatelessWidget {
                 ),
                 itemCount: webAppProjects.length,
                 itemBuilder: (context, index) {
+                  var company = getDummyCompanies.firstWhere((company)=>company.id == webAppProjects[index].companyId);
                   return Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (webAppProjects[index]['name']!,
+                        (webAppProjects[index].name,
                     
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
 
               SizedBox(height: 20),
-            Center(
-              child: Container(
-                width: 500,
-                height: 300,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  border: Border.all(color: Colors.white, width: 5),
-                  // borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child:  Positioned.fill(
-              child: ImageCarouselSlider(items: webAppProjects[index]['images']!,imageHeight: 280),
-            ),
-                ),
-              ),
-            ),
-                       
+              WebAppView(project: getDummyProjects.firstWhere((project) => project.type == 'webapp'),),
               SizedBox(height: 20),
-                        Text(webAppProjects[index]['company']!)
+                        Text(company.name)
                       ],
                     ),
                   );
