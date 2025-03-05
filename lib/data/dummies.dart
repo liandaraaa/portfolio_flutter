@@ -1,12 +1,20 @@
+import 'package:flutter_portfolio/data/company.dart';
 import 'package:flutter_portfolio/data/education.dart';
 import 'package:flutter_portfolio/data/project.dart';
 import 'package:flutter_portfolio/data/work.dart';
+
+ final List<Company> getDummyCompanies = [
+      Company(id: 1, name: "PT Ruang Raya Indonesia (Ruangguru)", logoUrl: 'assets/images/ic_logo_ruangguru.png', details: 'Edu tech'),
+      Company(id: 2, name: "PT Indopasifik Teknologi Medika Indonesia (itmi.id)", logoUrl: 'assets/images/ic_logo_itmi.png', details: 'Health tech'),
+      Company(id: 3, name: "PT Jejaring Hijau Indonesia (Kecipir.id)", logoUrl: 'assets/images/ic_logo_kecipir.png', details: 'Farm tech'),
+      Company(id: 4, name: "PT Kode Aplikasi Indonesia (Nusantara Beta Studio - NBS)", logoUrl: 'assets/images/ic_logo_nbs.jpeg', details: 'IT consultant'),
+    ];
 
  final List<Work> getDummyWorks = [
      Work(
       id: 1,
         position: "Software Engineer (Web and Mobile Frontend)",
-        company: "PT Ruang Raya Indonesia (Ruangguru)",
+        companyId: 1,
         year: "August 2021 - present",
         details: [
           "Led the development of user-friendly web applications and collaborated with design teams to ensure a seamless user interface.",
@@ -20,7 +28,7 @@ import 'package:flutter_portfolio/data/work.dart';
       Work(
       id: 2,
         position: "Android Engineer",
-        company: "PT Indopasifik Teknologi Medika Indonesia (itmi.id)",
+        companyId: 2,
         year: "March 2021 - August 2021",
         details: [
           "Contributed to the development of innovative mobile applications, enhancing user experience and functionality.",
@@ -34,7 +42,7 @@ import 'package:flutter_portfolio/data/work.dart';
       Work(
       id: 3,
         position: "Android Engineer",
-        company: "PT Jejaring Hijau Indonesia (kecipir.id)",
+        companyId: 3,
         year: "July 2020 - March 2021",
         details: [
           "Contributed to the development of a sustainable agriculture mobile application, promoting eco-friendly practices and user engagement.",
@@ -45,7 +53,7 @@ import 'package:flutter_portfolio/data/work.dart';
       Work(
       id: 4,
         position: "Android Engineer",
-        company: "PT Kode Aplikasi Indonesia (Nusantara Beta Studio - NBS)",
+        companyId: 4,
         year: "July 2018 - July 2020",
         details:[
           "Developed and maintained various features for Android applications, ensuring optimal performance and user satisfaction.", 
@@ -87,7 +95,8 @@ import 'package:flutter_portfolio/data/work.dart';
           'assets/images/ic_webapp_saas_3.png'
        ], 
        linkAppUrl: "https://example.com/project1",
-       companyId: 1 ),
+       companyId: 1,
+       type: "webapp" ),
          Project(
       name: "Payment Rewrite", 
        responsiblities: ["Developed a scalable omnichannel platform for businesses", "Implemented user authentication and authorization features", "Integrated third-party APIs for enhanced functionality"],
@@ -97,7 +106,8 @@ import 'package:flutter_portfolio/data/work.dart';
           'assets/images/ic_webapp_payment_3.png'
        ],
        linkAppUrl: "https://example.com/project1",
-       companyId: 2 ),
+       companyId: 2,
+       type: "webapp"  ),
          Project(
       name: "Chathub Wapers", 
        responsiblities: ["Developed a scalable omnichannel platform for businesses", "Implemented user authentication and authorization features", "Integrated third-party APIs for enhanced functionality"],
@@ -107,7 +117,8 @@ import 'package:flutter_portfolio/data/work.dart';
           'assets/images/ic_mobileapp_wapers_3.jpg'
         ],
        linkAppUrl: "https://example.com/project1",
-       companyId: 3 ),
+       companyId: 3,
+       type: "mobileapp"  ),
          Project(
       name: "Heroes Academy", 
        responsiblities: ["Developed a scalable omnichannel platform for businesses", "Implemented user authentication and authorization features", "Integrated third-party APIs for enhanced functionality"],
@@ -117,7 +128,8 @@ import 'package:flutter_portfolio/data/work.dart';
           'assets/images/ic_mobileapp_heroesacademy_3.jpg'
         ],
        linkAppUrl: "https://example.com/project1",
-       companyId: 4 ),
+       companyId: 4,
+       type: "mobileapp" ),
           Project(
       name: "Heroes Academy", 
        responsiblities: ["Developed a scalable omnichannel platform for businesses", "Implemented user authentication and authorization features", "Integrated third-party APIs for enhanced functionality"],
@@ -127,5 +139,6 @@ import 'package:flutter_portfolio/data/work.dart';
           'assets/images/ic_mobileapp_leeg_3.png'
         ],
        linkAppUrl: "https://example.com/project1",
-       companyId: 1 ),
+       companyId: 1,
+       type: "mobileapp" ),
   ];

@@ -4,6 +4,7 @@ class Project {
   final List<String> imageAppUrls;
   final String linkAppUrl;
   final int companyId;
+  final String type;
 
-  const Project( { required this.name, required this.responsiblities, required this.imageAppUrls, required this.linkAppUrl, required this.companyId} );
+  const Project( { required this.name, required this.responsiblities, required this.imageAppUrls, required this.linkAppUrl, required this.companyId, required this.type} );
 }
