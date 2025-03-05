@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portfolio/data/dummies.dart';
 import 'package:flutter_portfolio/data/project.dart';
-import 'package:flutter_portfolio/screens/ProfileScreen.dart';
 import 'package:flutter_portfolio/widget/mobile_app_view.dart';
 import 'package:flutter_portfolio/widget/web_app_view.dart';
 
 class Homescreen extends StatelessWidget {
-  TabController tabController;
+  final TabController tabController;
 
   Homescreen({super.key, required this.tabController});
 
@@ -81,7 +80,7 @@ class Homescreen extends StatelessWidget {
                 itemCount: mobileAppProjects.length,
                 itemBuilder: (context, index) {
                   var company = getDummyCompanies.firstWhere((company)=>company.id == mobileAppProjects[index].companyId);
-                  return buildMobileAppProject(mobileAppProjects, index, company.name);
+                  return buildMobileAppProject(mobileAppProjects[index], company.name);
                 },
               ),
               SizedBox(height: 80),
@@ -104,7 +103,7 @@ class Homescreen extends StatelessWidget {
                 itemCount: webAppProjects.length,
                 itemBuilder: (context, index) {
                   var company = getDummyCompanies.firstWhere((company)=>company.id == webAppProjects[index].companyId);
-                  return buildWebAppProject(webAppProjects, index, company.name);
+                  return buildWebAppProject(webAppProjects[index], company.name);
                 },
               ),
             ],
@@ -141,7 +140,7 @@ class Homescreen extends StatelessWidget {
     );
   }
 
-  Widget buildMobileAppProject(List<Project> mobileAppProjects, int index, String companyName){
+  Widget buildMobileAppProject(Project project, String companyName){
     return GestureDetector(
       onTap: ()=> tabController.animateTo(2),
       child: Container(
@@ -149,9 +148,9 @@ class Homescreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (mobileAppProjects[index].name, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold), ),
+                        (project.name, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold), ),
                       SizedBox(height: 20),
-                      MobileAppView(project: getDummyProjects.firstWhere((project) => project.type == 'mobileapp')),
+                      MobileAppView(project: project),
                       SizedBox(height: 20),
                                 Text(companyName)
                               ],
@@ -160,7 +159,7 @@ class Homescreen extends StatelessWidget {
     );
   }
 
-  Widget buildWebAppProject(List<Project> webAppProjects, int index, String companyName){
+  Widget buildWebAppProject(Project project, String companyName){
       return GestureDetector(
       onTap: ()=> tabController.animateTo(2),
       child: Container(
@@ -168,13 +167,13 @@ class Homescreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text
-                        (webAppProjects[index].name,
+                        (project.name,
                     
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                         ),
 
               SizedBox(height: 20),
-              WebAppView(project: getDummyProjects.firstWhere((project) => project.type == 'webapp'),),
+              WebAppView(project: project,),
               SizedBox(height: 20),
                         Text(companyName)
                       ],
